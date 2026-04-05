@@ -103,28 +103,20 @@
     </div>
 
     <script>
-        // Smart Background Loader to bypass caching and case-sensitivity
-        function loadSmartBackground() {
+        // Smart Background Loader to bypass caching
+        function forceLoadImage() {
             const bgContainer = document.querySelector('.background-container');
-            const cacheBuster = '?v=' + new Date().getTime(); // Forces browser to get fresh image
+            const imageUrl = 'https://plaherne.github.io/Countdown-to-10-years/RP-1023.JPG';
+            const cacheBuster = '?v=' + new Date().getTime(); // Busts the cache
             
-            const imgUpper = new Image();
-            imgUpper.onload = function() {
-                bgContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.2), transparent), url('${imgUpper.src}')`;
+            const img = new Image();
+            img.onload = function() {
+                bgContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.2), transparent), url('${img.src}')`;
             };
-            imgUpper.onerror = function() {
-                const imgLower = new Image();
-                imgLower.onload = function() {
-                    bgContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.2), transparent), url('${imgLower.src}')`;
-                };
-                // Now fetching directly from your live GitHub site
-                imgLower.src = 'https://plaherne.github.io/Countdown-to-10-years/RP-1023.jpg' + cacheBuster;
-            };
-            // Now fetching directly from your live GitHub site
-            imgUpper.src = 'https://plaherne.github.io/Countdown-to-10-years/RP-1023.JPG' + cacheBuster;
+            img.src = imageUrl + cacheBuster;
         }
 
-        loadSmartBackground();
+        forceLoadImage();
 
         // Countdown Logic
         const targetDate = new Date("August 19, 2026 00:00:00").getTime();
