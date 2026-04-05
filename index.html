@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to 10 Years</title>
+    <!-- Google Fonts for the "Love Inspired" look -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #87CEEB; /* Fallback sky blue */
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* This points directly to the photo in your Github folder */
+            background-image: linear-gradient(to right, rgba(0,0,0,0.2), transparent), 
+                              url('RP-1023.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .fancy-font {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .number-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            text-shadow: var(--text-shadow);
+        }
+
+        @media (max-width: 768px) {
+            .background-container {
+                background-position: 70% center; /* Adjusts photo for mobile */
+            }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center md:justify-start min-h-screen">
+
+    <div class="background-container"></div>
+
+    <!-- Main Content Area -->
+    <div class="relative z-10 w-full max-w-2xl px-8 md:px-16 lg:px-24 py-10 text-white">
+        
+        <h1 class="fancy-font text-5xl md:text-7xl mb-8 drop-shadow-lg text-center md:text-left">
+            Countdown to 10 years
+        </h1>
+
+        <!-- Countdown Grid -->
+        <div id="countdown" class="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 text-center">
+            
+            <div class="countdown-item p-3 flex flex-col items-center justify-center">
+                <span id="months" class="number-font text-2xl md:text-4xl font-bold">00</span>
+                <span class="text-xs uppercase tracking-widest mt-1 opacity-80">Months</span>
+            </div>
+
+            <div class="countdown-item p-3 flex flex-col items-center justify-center">
+                <span id="days" class="number-font text-2xl md:text-4xl font-bold">00</span>
+                <span class="text-xs uppercase tracking-widest mt-1 opacity-80">Days</span>
+            </div>
+
+            <div class="countdown-item p-3 flex flex-col items-center justify-center">
+                <span id="hours" class="number-font text-2xl md:text-4xl font-bold">00</span>
+                <span class="text-xs uppercase tracking-widest mt-1 opacity-80">Hrs</span>
+            </div>
+
+            <div class="countdown-item p-3 flex flex-col items-center justify-center">
+                <span id="minutes" class="number-font text-2xl md:text-4xl font-bold">00</span>
+                <span class="text-xs uppercase tracking-widest mt-1 opacity-80">Mins</span>
+            </div>
+
+            <div class="countdown-item p-3 flex flex-col items-center justify-center col-span-3 md:col-span-1">
+                <span id="seconds" class="number-font text-2xl md:text-4xl font-bold text-pink-200">00</span>
+                <span class="text-xs uppercase tracking-widest mt-1 opacity-80">Secs</span>
+            </div>
+
+        </div>
+
+        <p class="mt-12 italic opacity-90 text-lg md:text-xl fancy-font text-center md:text-left">
+            August 19th, 2026 - Paul & Roberta
+        </p>
+    </div>
+
+    <script>
+        const targetDate = new Date("August 19, 2026 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div class='text-4xl fancy-font w-full text-center'>Happy 10th Anniversary!</div>";
+                return;
+            }
+
+            const totalDays = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const months = Math.floor(totalDays / 30.44);
+            const days = Math.floor(totalDays % 30.44);
+            
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("months").innerText = months.toString().padStart(2, '0');
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
