@@ -26,12 +26,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* This points directly to the photo in your Github folder */
-            background-image: linear-gradient(to right, rgba(0,0,0,0.2), transparent), 
-                              url('RP-1023.JPG');
+            /* The image is now loaded via JavaScript below to prevent caching issues */
             background-size: cover;
             background-position: center;
             z-index: -1;
+            transition: background-image 0.5s ease-in-out;
         }
 
         .fancy-font {
@@ -104,6 +103,28 @@
     </div>
 
     <script>
+        // Smart Background Loader to bypass caching and case-sensitivity
+        function loadSmartBackground() {
+            const bgContainer = document.querySelector('.background-container');
+            const cacheBuster = '?v=' + new Date().getTime(); // Forces browser to get fresh image
+            
+            const imgUpper = new Image();
+            imgUpper.onload = function() {
+                bgContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.2), transparent), url('${imgUpper.src}')`;
+            };
+            imgUpper.onerror = function() {
+                const imgLower = new Image();
+                imgLower.onload = function() {
+                    bgContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.2), transparent), url('${imgLower.src}')`;
+                };
+                imgLower.src = 'RP-1023.jpg' + cacheBuster;
+            };
+            imgUpper.src = 'RP-1023.JPG' + cacheBuster;
+        }
+
+        loadSmartBackground();
+
+        // Countdown Logic
         const targetDate = new Date("August 19, 2026 00:00:00").getTime();
 
         function updateCountdown() {
