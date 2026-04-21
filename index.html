@@ -9,51 +9,52 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --text-shadow- 2px 2px 6px rgba(0,0,0,0.8), 0px 0px 15px rgba(0,0,0,0.6);
+            --text-shadow: 2px 2px 6px rgba(0,0,0,0.8), 0px 0px 15px rgba(0,0,0,0.6);
         }
 
         body, html {
-            margin- 0;
-            padding- 0;
-            height- 100%;
-            overflow- hidden;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #87CEEB; /* Bulletproof fallback sky blue */
         }
 
         .background-container {
-            position- fixed;
-            top- 0;
-            left- 0;
-            width- 100%;
-            height- 100%;
-            background-color- #87CEEB; /* Fallback sky blue */
-            /* Gradient added to the top (0-20%) for title legibility, clear middle for faces, dark bottom for countdown */
-            background-image- linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.8) 100%), url('bg2016.jpg?v=3');
-            background-size- cover;
-            background-position- center;
-            z-index- -1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #87CEEB;
+            /* Gradient for title legibility, clear middle for faces, dark bottom for countdown */
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.8) 100%), url('bg2016.jpg?v=4');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
 
         .fancy-font {
-            font-family- 'Dancing Script', cursive;
-            text-shadow- var(--text-shadow);
+            font-family: 'Dancing Script', cursive;
+            text-shadow: var(--text-shadow);
         }
 
         .number-font {
-            font-family- 'Montserrat', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .countdown-item {
-            background- rgba(0, 0, 0, 0.3);
-            backdrop-filter- blur(8px);
-            border- 1px solid rgba(255, 255, 255, 0.2);
-            border-radius- 15px;
-            text-shadow- var(--text-shadow);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            text-shadow: var(--text-shadow);
         }
 
-        @media (max-width- 768px) {
+        @media (max-width: 768px) {
             .background-container {
                 /* Shifts the photo so you and Roberta stay in the center of the screen */
-                background-position- 65% 30%; 
+                background-position: 65% 30%; 
             }
         }
     </style>
@@ -62,50 +63,49 @@
 
     <div class="background-container"></div>
 
-    <!-- Main Content Area- Flex-col and justify-between splits the top and bottom -->
-    <div class="relative z-10 flex flex-col justify-between min-h-[100dvh] w-full max-w-2xl px-4 md-px-16 lg-px-24 py-12 md-py-16 text-white mx-auto md-mx-0">
+    <!-- Main Content Area: Flex-col and justify-between splits the top and bottom -->
+    <div class="relative z-10 flex flex-col justify-between min-h-[100dvh] w-full max-w-2xl px-4 md:px-16 lg:px-24 py-12 md:py-16 text-white mx-auto md:mx-0">
         
-        <!-- TOP SECTION- Title -->
-        <div class="w-full mt-4 md-mt-0">
-            <h1 class="fancy-font drop-shadow-lg text-center md-text-left leading-tight">
-                <span class="block text-4xl md-text-6xl">Countdown To</span>
-                <span class="block text-6xl md-text-8xl mt-1 md-mt-2">10 Years</span>
+        <!-- TOP SECTION: Title -->
+        <div class="w-full mt-4 md:mt-0">
+            <h1 class="fancy-font text-5xl md:text-7xl drop-shadow-lg text-center md:text-left leading-tight">
+                Countdown to 10 years
             </h1>
         </div>
 
-        <!-- BOTTOM SECTION- Countdown & Names -->
-        <div class="w-full flex flex-col items-center md-items-start pb-6 md-pb-0">
+        <!-- BOTTOM SECTION: Countdown & Names -->
+        <div class="w-full flex flex-col items-center md:items-start pb-6 md:pb-0">
             <!-- Countdown Flex Container -->
-            <div id="countdown" class="flex flex-wrap justify-center md-justify-start gap-3 md-gap-4 text-center">
+            <div id="countdown" class="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 text-center">
                 
-                <div class="countdown-item w-[28%] md-w-auto min-w-[75px] md-min-w-[90px] p-2 md-p-3 flex flex-col items-center justify-center">
-                    <span id="months" class="number-font text-4xl md-text-5xl font-bold">00</span>
-                    <span class="text-[0.65rem] md-text-xs uppercase tracking-widest mt-1 opacity-80">Months</span>
+                <div class="countdown-item w-[28%] md:w-auto min-w-[75px] md:min-w-[90px] p-2 md:p-3 flex flex-col items-center justify-center">
+                    <span id="months" class="number-font text-4xl md:text-5xl font-bold">00</span>
+                    <span class="text-[0.65rem] md:text-xs uppercase tracking-widest mt-1 opacity-80">Months</span>
                 </div>
 
-                <div class="countdown-item w-[28%] md-w-auto min-w-[75px] md-min-w-[90px] p-2 md-p-3 flex flex-col items-center justify-center">
-                    <span id="days" class="number-font text-4xl md-text-5xl font-bold">00</span>
-                    <span class="text-[0.65rem] md-text-xs uppercase tracking-widest mt-1 opacity-80">Days</span>
+                <div class="countdown-item w-[28%] md:w-auto min-w-[75px] md:min-w-[90px] p-2 md:p-3 flex flex-col items-center justify-center">
+                    <span id="days" class="number-font text-4xl md:text-5xl font-bold">00</span>
+                    <span class="text-[0.65rem] md:text-xs uppercase tracking-widest mt-1 opacity-80">Days</span>
                 </div>
 
-                <div class="countdown-item w-[28%] md-w-auto min-w-[75px] md-min-w-[90px] p-2 md-p-3 flex flex-col items-center justify-center">
-                    <span id="hours" class="number-font text-4xl md-text-5xl font-bold">00</span>
-                    <span class="text-[0.65rem] md-text-xs uppercase tracking-widest mt-1 opacity-80">Hrs</span>
+                <div class="countdown-item w-[28%] md:w-auto min-w-[75px] md:min-w-[90px] p-2 md:p-3 flex flex-col items-center justify-center">
+                    <span id="hours" class="number-font text-4xl md:text-5xl font-bold">00</span>
+                    <span class="text-[0.65rem] md:text-xs uppercase tracking-widest mt-1 opacity-80">Hrs</span>
                 </div>
 
-                <div class="countdown-item w-[28%] md-w-auto min-w-[75px] md-min-w-[90px] p-2 md-p-3 flex flex-col items-center justify-center">
-                    <span id="minutes" class="number-font text-4xl md-text-5xl font-bold">00</span>
-                    <span class="text-[0.65rem] md-text-xs uppercase tracking-widest mt-1 opacity-80">Mins</span>
+                <div class="countdown-item w-[28%] md:w-auto min-w-[75px] md:min-w-[90px] p-2 md:p-3 flex flex-col items-center justify-center">
+                    <span id="minutes" class="number-font text-4xl md:text-5xl font-bold">00</span>
+                    <span class="text-[0.65rem] md:text-xs uppercase tracking-widest mt-1 opacity-80">Mins</span>
                 </div>
 
-                <div class="countdown-item w-[28%] md-w-auto min-w-[75px] md-min-w-[90px] p-2 md-p-3 flex flex-col items-center justify-center">
-                    <span id="seconds" class="number-font text-4xl md-text-5xl font-bold text-pink-200">00</span>
-                    <span class="text-[0.65rem] md-text-xs uppercase tracking-widest mt-1 opacity-80">Secs</span>
+                <div class="countdown-item w-[28%] md:w-auto min-w-[75px] md:min-w-[90px] p-2 md:p-3 flex flex-col items-center justify-center">
+                    <span id="seconds" class="number-font text-4xl md:text-5xl font-bold text-pink-200">00</span>
+                    <span class="text-[0.65rem] md:text-xs uppercase tracking-widest mt-1 opacity-80">Secs</span>
                 </div>
 
             </div>
 
-            <p class="mt-8 md-mt-12 italic opacity-90 text-lg md-text-xl fancy-font text-center md-text-left">
+            <p class="mt-8 md:mt-12 italic opacity-90 text-lg md:text-xl fancy-font text-center md:text-left">
                 August 19th, 2026 - Paul & Roberta
             </p>
         </div>
@@ -113,44 +113,30 @@
     </div>
 
     <script>
-        // Exact Calendar Logic
-        const targetDate = new Date("August 19, 2026 00-00-00");
+        // Countdown Logic using the strict ISO format that iPhones require
+        const targetDate = new Date("2026-08-19T00:00:00").getTime();
 
         function updateCountdown() {
-            const now = new Date();
-            const distance = targetDate.getTime() - now.getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Failsafe if the date calculation somehow fails
+            if (isNaN(distance)) {
+                return; 
+            }
 
             if (distance < 0) {
                 document.getElementById("countdown").innerHTML = "<div class='text-4xl fancy-font w-full text-center'>Happy 10th Anniversary!</div>";
                 return;
             }
 
-            // Calculate precise differences
-            let months = (targetDate.getFullYear() - now.getFullYear()) * 12 + (targetDate.getMonth() - now.getMonth());
-            let days = targetDate.getDate() - now.getDate();
-            let hours = targetDate.getHours() - now.getHours();
-            let minutes = targetDate.getMinutes() - now.getMinutes();
-            let seconds = targetDate.getSeconds() - now.getSeconds();
-
-            // Cascade logic for negative differences
-            if (seconds < 0) {
-                seconds += 60;
-                minutes--;
-            }
-            if (minutes < 0) {
-                minutes += 60;
-                hours--;
-            }
-            if (hours < 0) {
-                hours += 24;
-                days--;
-            }
-            if (days < 0) {
-                // Borrow days perfectly based on the exact number of days in the previous month
-                const daysInLastMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0).getDate();
-                days += daysInLastMonth;
-                months--;
-            }
+            const totalDays = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const months = Math.floor(totalDays / 30.44);
+            const days = Math.floor(totalDays % 30.44);
+            
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             document.getElementById("months").innerText = months.toString().padStart(2, '0');
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
